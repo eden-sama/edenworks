@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eden Works</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: white;
+      text-align: center;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+      animation: glow 2s infinite alternate;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    h1:hover {
+      transform: scale(1.1) rotate(-2deg);
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #a29bfe, 0 0 30px #6c5ce7;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #81ecec, 0 0 40px #00cec9;
+      }
+    }
+
+    .floating {
+      position: absolute;
+      top: -50px;
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="hello">Eden Works</h1>
+
+  <script>
+    // Add floating emojis for extra effect
+    const emojis = ["✨", "🌸", "💫", "🌟", "🔥", "🌈", "💎"];
+
+    function createFloatingEmoji() {
+      const span = document.createElement("span");
+      span.className = "floating";
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * window.innerWidth + "px";
+      span.style.animationDuration = 3 + Math.random() * 3 + "s";
+      document.body.appendChild(span);
+
+      setTimeout(() => span.remove(), 5000);
+    }
+
+    setInterval(createFloatingEmoji, 500);
+  </script>
+</body>
+</html>
